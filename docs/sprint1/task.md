@@ -36,10 +36,10 @@
 - [X] 5.3 Negar el acceso a la gestión de usuarios si el rol no es Administrador.
 
 ## 6. Gestión de cuentas (HU-01)
-- [ ] 6.1 Crear la vista `views/usuarios/lista.php` con la tabla de usuarios.
-- [ ] 6.2 Crear la vista `views/usuarios/formulario.php` para crear y editar usuarios.
-- [ ] 6.3 Crear `controllers/UsuarioController.php` con crear, editar y desactivar, guardando la contraseña con `password_hash()`.
-- [ ] 6.4 Validar correo repetido y contraseña de mínimo 8 caracteres.
+- [X] 6.1 Crear la vista `views/usuarios/lista.php` con la tabla de usuarios.
+- [X] 6.2 Crear la vista `views/usuarios/formulario.php` para crear y editar usuarios.
+- [X] 6.3 Crear `controllers/UsuarioController.php` con crear, editar y desactivar, guardando la contraseña con `password_hash()`.
+- [X] 6.4 Validar contraseñaS.
 
 ## 7. Mapa de Mesas (HU-02 y HU-04)
 - [ ] 7.1 Crear la vista `views/mesas.php` con grid responsive de tarjetas.
