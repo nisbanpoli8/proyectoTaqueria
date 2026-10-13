@@ -7,6 +7,7 @@ session_start();
 require_once __DIR__ . '/../controllers/AuthController.php';
 require_once __DIR__ . '/../controllers/AccessController.php';
 require_once __DIR__ . '/../controllers/UsuarioController.php';
+require_once __DIR__ . '/../controllers/MesasController.php';
 
 const SESSION_TIMEOUT_SECONDS = 600;
 const SESSION_WARNING_SECONDS = 10;
@@ -82,7 +83,25 @@ if ($action === 'caja') {
 
 if ($action === 'mesas') {
     $accessController->requireRole(['Mesero']);
-    require_once __DIR__ . '/../views/mapa_mesas.php';
+    (new MesasController())->index();
+    return;
+}
+
+if ($action === 'mesas_ocupar') {
+    $accessController->requireRole(['Mesero']);
+    (new MesasController())->ocupar();
+    return;
+}
+
+if ($action === 'mesas_liberar') {
+    $accessController->requireRole(['Mesero']);
+    (new MesasController())->liberar();
+    return;
+}
+
+if ($action === 'mesas_solicitar_cuenta') {
+    $accessController->requireRole(['Mesero']);
+    (new MesasController())->solicitarCuenta();
     return;
 }
 
