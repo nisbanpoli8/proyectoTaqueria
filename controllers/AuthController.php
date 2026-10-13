@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../models/Usuario.php';
+require_once __DIR__ . '/AccessController.php';
 
 class AuthController
 {
@@ -56,8 +57,8 @@ class AuthController
         $_SESSION['session_timeout'] = self::SESSION_TIMEOUT;
         $_SESSION['session_warning'] = self::SESSION_WARNING;
 
-        header('Location: index.php?action=home');
-        exit;
+        $accessController = new AccessController();
+        $accessController->redirectByRole();
     }
 
     public function logout(): void

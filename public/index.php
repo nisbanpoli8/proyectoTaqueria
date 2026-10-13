@@ -1,18 +1,18 @@
 <?php
-// public/index.php
 
 declare(strict_types=1);
 
 session_start();
 
 require_once __DIR__ . '/../controllers/AuthController.php';
+require_once __DIR__ . '/../controllers/AccessController.php';
 
 const SESSION_TIMEOUT_SECONDS = 600;
 const SESSION_WARNING_SECONDS = 10;
 
 $action = $_GET['action'] ?? 'login';
+$accessController = new AccessController();
 
-// Cierre por inactividad
 if (isset($_SESSION['usuario_id'])) {
     $now = time();
     $lastActivity = (int) ($_SESSION['ultimo_acceso'] ?? $now);
@@ -41,7 +41,6 @@ if (isset($_SESSION['usuario_id'])) {
     $_SESSION['ultimo_acceso'] = $now;
 }
 
-// Rutas
 if ($action === 'logout') {
     (new AuthController())->logout();
 }
@@ -59,17 +58,37 @@ if ($action === 'login') {
     return;
 }
 
-// Verificar sesión activa para todas las rutas privadas
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: index.php?action=login');
     exit;
 }
 
 if ($action === 'home') {
-    require_once __DIR__ . '/../views/home.php';
+    $accessController->redirectByRole();
+}
+
+if ($action === 'admin') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../views/admin_panel.php';
     return;
 }
 
-// Acción por defecto (redirige a home)
-header('Location: index.php?action=home');
-exit;
+if ($action === 'caja') {
+    $accessController->requireRole(['Cajero']);
+    require_once __DIR__ . '/../views/caja.php';
+    return;
+}
+
+if ($action === 'mesas') {
+    $accessController->requireRole(['Mesero']);
+    require_once __DIR__ . '/../views/mapa_mesas.php';
+    return;
+}
+
+if ($action === 'usuarios') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../views/usuarios.php';
+    return;
+}
+
+$accessController->redirectByRole();
