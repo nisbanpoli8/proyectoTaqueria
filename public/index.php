@@ -6,6 +6,7 @@ session_start();
 
 require_once __DIR__ . '/../controllers/AuthController.php';
 require_once __DIR__ . '/../controllers/AccessController.php';
+require_once __DIR__ . '/../controllers/UsuarioController.php';
 
 const SESSION_TIMEOUT_SECONDS = 600;
 const SESSION_WARNING_SECONDS = 10;
@@ -87,7 +88,31 @@ if ($action === 'mesas') {
 
 if ($action === 'usuarios') {
     $accessController->requireRole(['Administrador']);
-    require_once __DIR__ . '/../views/usuarios.php';
+    (new UsuarioController())->index();
+    return;
+}
+
+if ($action === 'usuarios_nuevo') {
+    $accessController->requireRole(['Administrador']);
+    (new UsuarioController())->nuevo();
+    return;
+}
+
+if ($action === 'usuarios_guardar') {
+    $accessController->requireRole(['Administrador']);
+    (new UsuarioController())->guardar();
+    return;
+}
+
+if ($action === 'usuarios_editar') {
+    $accessController->requireRole(['Administrador']);
+    (new UsuarioController())->editar();
+    return;
+}
+
+if ($action === 'usuarios_desactivar') {
+    $accessController->requireRole(['Administrador']);
+    (new UsuarioController())->desactivar();
     return;
 }
 
