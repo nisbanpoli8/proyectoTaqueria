@@ -20,12 +20,12 @@
 - [X] 3.4 Crear `models/Orden.php` con los métodos: `crear`, `agregarDetalle`, `calcularTotal`, `obtenerPorMesa`.
 
 ## 4. Inicio y cierre de sesión (HU-01)
-- [ ] 4.0 Crear `public/index.php` como punto de entrada y enrutador principal.
-- [ ] 4.1 Crear la vista `views/login.php` con formulario, Bootstrap 5 y campos en rojo cuando falten.
-- [ ] 4.2 Crear `controllers/AuthController.php` con el método `login()` usando `password_verify()`.
-- [ ] 4.3 Mostrar el mensaje "Usuario o contraseña incorrectos" y bloquear cuentas desactivadas.
-- [ ] 4.4 Crear el cierre de sesión que destruye la sesión y regresa al login.
-- [ ] 4.5 Implementar el cierre de sesión por inactividad (10 minutos + aviso de 10 segundos).
+- [X] 4.0 Crear `public/index.php` como punto de entrada y enrutador principal.
+- [X] 4.1 Crear la vista `views/login.php` con formulario, Bootstrap 5 y campos en rojo cuando falten.
+- [X] 4.2 Crear `controllers/AuthController.php` con el método `login()` usando `password_verify()`.
+- [X] 4.3 Mostrar el mensaje "Usuario o contraseña incorrectos" y bloquear cuentas desactivadas.
+- [X] 4.4 Crear el cierre de sesión que destruye la sesión y regresa al login.
+- [X] 4.5 Implementar el cierre de sesión por inactividad (10 minutos + aviso de 10 segundos).
 
 ## 5. Control de acceso (HU-01)
 - [ ] 5.1 Redirigir al login a quien no tenga sesión iniciada.
