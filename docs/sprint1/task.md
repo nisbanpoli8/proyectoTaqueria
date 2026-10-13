@@ -14,10 +14,10 @@
 - [X] 2.2 Utilizar las tablas existentes: `usuarios`, `roles`, `mesas`, `categorias`, `productos`, `insumos`, `metodos_pago`, `ordenes`, `detalle_ordenes`, `pagos`, `movimientos`.
 
 ## 3. Modelos
-- [ ] 3.1 Crear `models/Usuario.php` con los métodos: `buscarPorUsuario`, `crear`, `editar`, `desactivar`, `listar`.
-- [ ] 3.2 Crear `models/Mesa.php` con los métodos: `obtenerTodas`, `obtenerPorId`, `actualizarEstado`, `actualizarCapacidad`.
-- [ ] 3.3 Crear `models/Producto.php` con los métodos: `listar`, `obtenerPorCategoria`.
-- [ ] 3.4 Crear `models/Orden.php` con los métodos: `crear`, `agregarDetalle`, `calcularTotal`, `obtenerPorMesa`.
+- [X] 3.1 Crear `models/Usuario.php` con los métodos: `buscarPorUsuario`, `crear`, `editar`, `desactivar`, `listar`.
+- [X] 3.2 Crear `models/Mesa.php` con los métodos: `obtenerTodas`, `obtenerPorId`, `actualizarEstado`, `actualizarCapacidad`.
+- [X] 3.3 Crear `models/Producto.php` con los métodos: `listar`, `obtenerPorCategoria`.
+- [X] 3.4 Crear `models/Orden.php` con los métodos: `crear`, `agregarDetalle`, `calcularTotal`, `obtenerPorMesa`.
 
 ## 4. Inicio y cierre de sesión (HU-01)
 - [ ] 4.0 Crear `public/index.php` como punto de entrada y enrutador principal.
