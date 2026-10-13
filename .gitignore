@@ -1,0 +1,6 @@
+#Credenciales y configuración de la base de datos
+.env
+config/database.php
+
+#Archivo de vista previa temporal
+index.html
