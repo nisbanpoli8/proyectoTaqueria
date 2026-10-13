@@ -3,15 +3,15 @@
 **Reglas:** hacer una tarea a la vez, probarla en el navegador y hacer commit antes de pasar a la siguiente.
 
 ## 1. Preparación
-- [ ] 1.1 Crear la estructura de carpetas MVC (models, views, controllers, public, config, database, docs).
-- [ ] 1.2 Crear el archivo de configuración `.env` en la raíz del proyecto con las credenciales de la base de datos.
-- [ ] 1.3 Crear la conexión con PDO (`config/database.php`) leyendo las variables del `.env`.
-- [ ] 1.4 Crear el archivo `config/init_admin.php` para insertar el administrador inicial (solo si no existe), con contraseña encriptada con `password_hash()`.
-- [ ] 1.5 Verificar que `.gitignore` excluya `config/database.php` y `.env`.
+- [X] 1.1 Crear la estructura de carpetas MVC (models, views, controllers, public, config, database, docs).
+- [X] 1.2 Crear el archivo de configuración `.env` en la raíz del proyecto con las credenciales de la base de datos.
+- [X] 1.3 Crear la conexión con PDO (`config/database.php`) leyendo las variables del `.env`.
+- [X] 1.4 Crear el archivo `config/init_admin.php` para insertar el administrador inicial (solo si no existe), con contraseña encriptada con `password_hash()`.
+- [X] 1.5 Verificar que `.gitignore` excluya `config/database.php` y `.env`.
 
 ## 2. Base de datos
-- [ ] 2.1 Conectar la aplicación mediante PDO a la base de datos `taqueriadb` existente. **No crear, modificar ni eliminar la base de datos ni sus tablas.**
-- [ ] 2.2 Utilizar las tablas existentes: `usuarios`, `roles`, `mesas`, `categorias`, `productos`, `insumos`, `metodos_pago`, `ordenes`, `detalle_ordenes`, `pagos`, `movimientos`.
+- [X] 2.1 Conectar la aplicación mediante PDO a la base de datos `taqueriadb` existente. **No crear, modificar ni eliminar la base de datos ni sus tablas.**
+- [X] 2.2 Utilizar las tablas existentes: `usuarios`, `roles`, `mesas`, `categorias`, `productos`, `insumos`, `metodos_pago`, `ordenes`, `detalle_ordenes`, `pagos`, `movimientos`.
 
 ## 3. Modelos
 - [ ] 3.1 Crear `models/Usuario.php` con los métodos: `buscarPorUsuario`, `crear`, `editar`, `desactivar`, `listar`.
