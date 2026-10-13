@@ -42,13 +42,13 @@
 - [X] 6.4 Validar contraseñaS.
 
 ## 7. Mapa de Mesas (HU-02 y HU-04)
-- [ ] 7.1 Crear la vista `views/mesas.php` con grid responsive de tarjetas.
-- [ ] 7.2 Crear `controllers/MesasController.php` con los métodos: `index`, `ocupar`, `liberar`, `solicitarCuenta`.
-- [ ] 7.3 Implementar el cambio de estado de mesa: Libre → Ocupada → Cuenta → Libre.
-- [ ] 7.4 Implementar el registro del número de comensales al ocupar una mesa.
-- [ ] 7.5 Implementar la barra de filtros (Todas, Libres, Ocupadas, Pendiente Pago) con contadores dinámicos.
-- [ ] 7.6 Implementar codificación por color: Verde (Libre), Rojo (Ocupada), Amarillo (Cuenta).
-- [ ] 7.7 Crear los modales: Abrir Mesa, Ver Comanda, Cobrar Ticket.
+- [X] 7.1 Crear la vista `views/mesas.php` con grid responsive de tarjetas.
+- [X] 7.2 Crear `controllers/MesasController.php` con los métodos: `index`, `ocupar`, `liberar`, `solicitarCuenta`.
+- [X] 7.3 Implementar el cambio de estado de mesa: Libre → Ocupada → Cuenta → Libre.
+- [X] 7.4 Implementar el registro del número de comensales al ocupar una mesa.
+- [X] 7.5 Implementar la barra de filtros (Todas, Libres, Ocupadas, Pendiente Pago) con contadores dinámicos.
+- [X] 7.6 Implementar codificación por color: Verde (Libre), Rojo (Ocupada), Amarillo (Cuenta).
+- [X] 7.7 Crear los modales: Abrir Mesa, Ver Comanda, Cobrar Ticket.
 
 ## 8. Toma de Comandas (HU-03)
 - [ ] 8.1 Crear la vista `views/comanda.php` con menú a la izquierda y resumen a la derecha.
