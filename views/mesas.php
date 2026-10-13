@@ -77,9 +77,9 @@ $vista = $vista ?? 'todas';
                                     Ocupar Mesa
                                 </button>
                             <?php elseif ($estado === 'OCUPADA'): ?>
-                                <button type="button" class="btn btn-primary btn-ver-comanda" data-id="<?php echo (int) $mesa['id']; ?>" data-numero="<?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?>">
+                                <a href="index.php?action=comanda&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-primary w-100">
                                     Ver Comanda
-                                </button>
+                                </a>
                                 <a href="index.php?action=mesas_solicitar_cuenta&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-warning mt-2 w-100">Solicitar Cuenta</a>
                             <?php else: ?>
                                 <button type="button" class="btn btn-success btn-cobrar" data-id="<?php echo (int) $mesa['id']; ?>" data-numero="<?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?>">

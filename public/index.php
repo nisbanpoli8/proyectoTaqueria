@@ -8,6 +8,7 @@ require_once __DIR__ . '/../controllers/AuthController.php';
 require_once __DIR__ . '/../controllers/AccessController.php';
 require_once __DIR__ . '/../controllers/UsuarioController.php';
 require_once __DIR__ . '/../controllers/MesasController.php';
+require_once __DIR__ . '/../controllers/ComandaController.php';
 
 const SESSION_TIMEOUT_SECONDS = 600;
 const SESSION_WARNING_SECONDS = 10;
@@ -102,6 +103,30 @@ if ($action === 'mesas_liberar') {
 if ($action === 'mesas_solicitar_cuenta') {
     $accessController->requireRole(['Mesero']);
     (new MesasController())->solicitarCuenta();
+    return;
+}
+
+if ($action === 'comanda') {
+    $accessController->requireRole(['Mesero']);
+    (new ComandaController())->index();
+    return;
+}
+
+if ($action === 'comanda_agregar') {
+    $accessController->requireRole(['Mesero']);
+    (new ComandaController())->agregarProducto();
+    return;
+}
+
+if ($action === 'comanda_eliminar') {
+    $accessController->requireRole(['Mesero']);
+    (new ComandaController())->eliminarProducto();
+    return;
+}
+
+if ($action === 'comanda_enviar') {
+    $accessController->requireRole(['Mesero']);
+    (new ComandaController())->enviarACocina();
     return;
 }
 
