@@ -28,12 +28,12 @@
 - [X] 4.5 Implementar el cierre de sesión por inactividad (10 minutos + aviso de 10 segundos).
 
 ## 5. Control de acceso (HU-01)
-- [ ] 5.1 Redirigir al login a quien no tenga sesión iniciada.
-- [ ] 5.2 Redirigir según rol después del login:
+- [X] 5.1 Redirigir al login a quien no tenga sesión iniciada.
+- [X] 5.2 Redirigir según rol después del login:
   - Administrador → Panel de administración.
   - Cajero → Panel de caja.
   - Mesero → Mapa de mesas.
-- [ ] 5.3 Negar el acceso a la gestión de usuarios si el rol no es Administrador.
+- [X] 5.3 Negar el acceso a la gestión de usuarios si el rol no es Administrador.
 
 ## 6. Gestión de cuentas (HU-01)
 - [ ] 6.1 Crear la vista `views/usuarios/lista.php` con la tabla de usuarios.
