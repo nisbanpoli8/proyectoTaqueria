@@ -480,3 +480,124 @@ body {
         flex-direction: column;
     }
 }
+
+/* ==========================================
+   ESTILOS DEL PANEL DE ADMINISTRACIÓN
+   ========================================== */
+
+.admin-body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2C1810 100%);
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+.admin-navbar {
+    background: #FFC107;
+    padding: 15px 30px;
+    border-bottom: 4px solid #FF6B00;
+}
+
+.admin-brand {
+    font-size: 22px;
+    font-weight: bold;
+    color: #3D2314;
+    letter-spacing: 2px;
+}
+
+.admin-user {
+    color: #3D2314;
+    font-weight: 500;
+}
+
+.admin-welcome {
+    color: #fff;
+    text-align: center;
+}
+
+.admin-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FBBF24;
+    margin-bottom: 10px;
+}
+
+.admin-subtitle {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+/* Tarjetas de acceso rápido */
+.admin-card-link {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+.admin-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 6px solid #FF6B00;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-card-link:hover .admin-card {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.4);
+}
+
+.admin-card-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-top-color: #999;
+}
+
+.admin-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.admin-card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #3D2314;
+    margin-bottom: 10px;
+}
+
+.admin-card-desc {
+    font-size: 0.95rem;
+    color: #666;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.admin-card-btn {
+    font-weight: bold;
+    color: #FF6B00;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.admin-card-disabled .admin-card-btn {
+    color: #999;
+}
+
+.admin-footer {
+    text-align: center;
+    color: #999;
+    font-size: 0.85rem;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

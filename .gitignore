@@ -6,3 +6,6 @@ config/database.php
 index.html
 
 AGENTS.md
+
+admin.panel.php
+public/index.php
