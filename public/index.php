@@ -106,6 +106,27 @@ if ($action === 'mesas_solicitar_cuenta') {
     return;
 }
 
+if ($action === 'cocina') {
+    $accessController->requireRole(['Taquero', 'Mesero', 'Administrador']);
+    require_once __DIR__ . '/../controllers/CocinaController.php';
+    (new CocinaController())->index();
+    return;
+}
+
+if ($action === 'cocina_actualizar_estado') {
+    $accessController->requireRole(['Taquero', 'Mesero', 'Administrador']);
+    require_once __DIR__ . '/../controllers/CocinaController.php';
+    (new CocinaController())->actualizarEstado();
+    return;
+}
+
+if ($action === 'cocina_listos') {
+    $accessController->requireRole(['Taquero', 'Mesero', 'Administrador']);
+    require_once __DIR__ . '/../controllers/CocinaController.php';
+    (new CocinaController())->listos();
+    return;
+}
+
 if ($action === 'comanda') {
     $accessController->requireRole(['Mesero']);
     (new ComandaController())->index();

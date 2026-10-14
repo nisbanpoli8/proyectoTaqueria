@@ -114,4 +114,65 @@ class Orden
 
         return $stmt->fetchAll();
     }
+
+    public function listarPendientes(): array
+    {
+        $sql = "SELECT o.id, o.id_mesa, o.id_usuario, o.tipo_pedido, o.estado, o.total, o.creado_en,
+                       m.numero_mesa, m.capacidad, u.nombre AS mesero_nombre, u.apellido AS mesero_apellido
+                FROM ordenes o
+                INNER JOIN mesas m ON m.id = o.id_mesa
+                INNER JOIN usuarios u ON u.id = o.id_usuario
+                WHERE o.estado IN ('pendiente', 'en_preparacion')
+                ORDER BY o.creado_en ASC";
+
+        return $this->pdo->query($sql)->fetchAll();
+    }
+
+    public function actualizarEstado(int $idOrden, string $estado): bool
+    {
+        $estadoNormalizado = strtolower(trim($estado));
+        $estadosPermitidos = ['pendiente', 'en_preparacion', 'listo', 'servido', 'pagado', 'cancelado'];
+
+        if (!in_array($estadoNormalizado, $estadosPermitidos, true)) {
+            return false;
+        }
+
+        $stmt = $this->pdo->prepare(
+            'UPDATE ordenes
+             SET estado = :estado
+             WHERE id = :id'
+        );
+
+        return $stmt->execute([
+            ':estado' => $estadoNormalizado,
+            ':id' => $idOrden,
+        ]);
+    }
+
+    public function obtenerDetalle(int $idOrden): array
+    {
+        $sql = 'SELECT d.cantidad, d.precio_unitario, d.subtotal, d.notas, p.nombre_producto
+                FROM detalle_ordenes d
+                INNER JOIN productos p ON p.id = d.id_producto
+                WHERE d.id_orden = :id_orden
+                ORDER BY d.id ASC';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':id_orden' => $idOrden]);
+
+        return $stmt->fetchAll();
+    }
+
+    public function listarListos(): array
+    {
+        $sql = "SELECT o.id, o.id_mesa, o.id_usuario, o.tipo_pedido, o.estado, o.total, o.creado_en,
+                       m.numero_mesa, m.capacidad, u.nombre AS mesero_nombre, u.apellido AS mesero_apellido
+                FROM ordenes o
+                INNER JOIN mesas m ON m.id = o.id_mesa
+                INNER JOIN usuarios u ON u.id = o.id_usuario
+                WHERE o.estado = 'listo'
+                ORDER BY o.creado_en ASC";
+
+        return $this->pdo->query($sql)->fetchAll();
+    }
 }

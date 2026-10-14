@@ -46,6 +46,9 @@ class AccessController
             case 'Mesero':
                 header('Location: index.php?action=mesas');
                 break;
+            case 'Taquero':
+                header('Location: index.php?action=cocina');
+                break;
             default:
                 header('Location: index.php?action=login');
                 break;
