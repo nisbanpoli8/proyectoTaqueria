@@ -1,11 +1,9 @@
 <?php
-// controllers/ComandaController.php
 
 declare(strict_types=1);
 
 require_once __DIR__ . '/../models/Producto.php';
 require_once __DIR__ . '/../models/Orden.php';
-require_once __DIR__ . '/../models/Mesa.php';
 
 class ComandaController
 {
@@ -148,8 +146,7 @@ class ComandaController
 
         $productos = (new Producto())->listar();
         $orden = new Orden();
-        // ✅ CORREGIDO: valores en minúsculas
-        $idOrden = $orden->crear($idMesa, (int) ($_SESSION['usuario_id'] ?? 0), 'comedor', 'pendiente');
+        $idOrden = $orden->crear($idMesa, (int) ($_SESSION['usuario_id'] ?? 0), 'COMEDOR', 'PENDIENTE');
         $observaciones = trim((string) ($_POST['notas'] ?? $_SESSION['comanda'][$idMesa]['notas'] ?? ''));
 
         foreach ($_SESSION['comanda'][$idMesa]['items'] as $idProducto => $item) {
@@ -177,11 +174,7 @@ class ComandaController
 
         $orden->calcularTotal($idOrden);
         unset($_SESSION['comanda'][$idMesa]);
-
-        // ✅ CORREGIDO: actualiza la BD en lugar de la sesión
-        $mesaModel = new Mesa();
-        $mesaModel->actualizarEstado($idMesa, 'ocupada');
-
+        $_SESSION['mesas_estado'][$idMesa] = 'OCUPADA';
         $_SESSION['flash_success'] = 'Comanda enviada a la cocina.';
 
         header('Location: index.php?action=mesas');
