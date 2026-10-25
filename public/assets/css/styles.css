@@ -255,17 +255,17 @@ body {
 }
 
 .status-libre {
-    background: #48ff91;
+    background: #b1ff9d;
     filter: drop-shadow(2px 2px 1px #000a00);
 }
 
 .status-ocupada {
-    background: #f45a5a;
+    background: #fe8282;
     filter: drop-shadow(2px 2px 1px #000a00);
 }
 
 .status-cuenta {
-    background: #eacb5a;
+    background: #ffeba2;
     filter: drop-shadow(2px 2px 1px #000a00);
 }
 
