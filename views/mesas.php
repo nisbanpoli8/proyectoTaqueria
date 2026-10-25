@@ -1,7 +1,5 @@
 <?php
-
 declare(strict_types=1);
-
 $mesas = $mesas ?? [];
 $filtros = $filtros ?? ['todas' => 0, 'libres' => 0, 'ocupadas' => 0, 'cuenta' => 0];
 $vista = $vista ?? 'todas';
@@ -13,7 +11,7 @@ $vista = $vista ?? 'todas';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa de Mesas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css?v=2">
 </head>
 <body class="mesas-body">
     <div class="container py-4">
@@ -30,17 +28,18 @@ $vista = $vista ?? 'todas';
             </div>
         </div>
 
+        <!-- FILTROS CORREGIDOS: Coinciden con los estados de la BD -->
         <div class="filter-bar mb-4">
             <button type="button" class="filter-btn active" data-filter="todas">
                 Todas <span class="counter"><?php echo (int) $filtros['todas']; ?></span>
             </button>
-            <button type="button" class="filter-btn" data-filter="libres">
+            <button type="button" class="filter-btn" data-filter="libre">
                 Libres <span class="counter"><?php echo (int) $filtros['libres']; ?></span>
             </button>
-            <button type="button" class="filter-btn" data-filter="ocupadas">
+            <button type="button" class="filter-btn" data-filter="ocupada">
                 Ocupadas <span class="counter"><?php echo (int) $filtros['ocupadas']; ?></span>
             </button>
-            <button type="button" class="filter-btn" data-filter="cuenta">
+            <button type="button" class="filter-btn" data-filter="reservada">
                 Pendiente Pago <span class="counter"><?php echo (int) $filtros['cuenta']; ?></span>
             </button>
         </div>
@@ -49,11 +48,10 @@ $vista = $vista ?? 'todas';
             <?php foreach ($mesas as $mesa): ?>
                 <?php
                 $estado = strtoupper((string) ($mesa['estado'] ?? 'LIBRE'));
-                $estadoClase = strtolower($estado);
                 $mostrarComensales = (int) ($mesa['comensales'] ?? 0);
-                $resumen = $estado === 'LIBRE' ? 'Mesa disponible' : ($estado === 'CUENTA' ? 'Cuenta pendiente' : 'Mesa ocupada');
                 ?>
-                <div class="col-sm-6 col-md-4 col-lg-3 mesa-card-wrapper" data-status="<?php echo strtolower($estado); ?>">
+                <!-- EL DATA-STATUS SE GENERA EN MINÚSCULAS CORRECTAMENTE -->
+                <div class="col-12 col-sm-6 col-lg-4 mesa-card-wrapper" data-status="<?php echo strtolower($estado); ?>">
                     <div class="mesa-card status-<?php echo strtolower($estado); ?>">
                         <div class="mesa-numero"> <?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?></div>
                         <div class="mesa-capacidad">
@@ -61,7 +59,7 @@ $vista = $vista ?? 'todas';
                             <?php echo (int) $mesa['capacidad']; ?> personas
                         </div>
                         <div class="mesa-estado">
-                            <?php echo $estado === 'CUENTA' ? 'Cuenta' : ($estado === 'OCUPADA' ? 'Ocupada' : 'Libre'); ?>
+                            <?php echo $estado === 'RESERVADA' ? 'Cuenta' : ($estado === 'OCUPADA' ? 'Ocupada' : 'Libre'); ?>
                         </div>
                         <div class="mesa-resumen">
                             <?php if ($estado === 'LIBRE'): ?>
@@ -73,13 +71,14 @@ $vista = $vista ?? 'todas';
 
                         <div class="mesa-actions">
                             <?php if ($estado === 'LIBRE'): ?>
-                                <button type="button" class="btn btn-primary btn-ocupacion" data-id="<?php echo (int) $mesa['id']; ?>" data-numero="<?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?>">
+                                <button type="button" class="btn btn-primary btn-ocupacion"
+                                data-id="<?php echo (int) $mesa['id']; ?>"
+                                data-numero="<?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?>"
+                                data-capacidad="<?php echo (int) $mesa['capacidad']; ?>">
                                     Ocupar Mesa
                                 </button>
                             <?php elseif ($estado === 'OCUPADA'): ?>
-                                <a href="index.php?action=comanda&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-primary w-100">
-                                    Ver Comanda
-                                </a>
+                                <a href="index.php?action=comanda&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-primary w-100">Ver Comanda</a>
                                 <a href="index.php?action=mesas_solicitar_cuenta&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-warning mt-2 w-100">Solicitar Cuenta</a>
                             <?php else: ?>
                                 <button type="button" class="btn btn-success btn-cobrar" data-id="<?php echo (int) $mesa['id']; ?>" data-numero="<?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?>">
@@ -94,6 +93,7 @@ $vista = $vista ?? 'todas';
         </div>
     </div>
 
+    <!-- MODAL CORREGIDO: El footer está vacío, JS lo llenará -->
     <div class="modal fade" id="mesaModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -102,14 +102,13 @@ $vista = $vista ?? 'todas';
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="mesaModalBody"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>
-                </div>
+                <div class="modal-footer" id="modalFooter"></div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/mesas.js" defer></script>
+    <!-- Agregamos ?v=3 para forzar la recarga del script -->
+    <script src="assets/js/mesas.js?v=3" defer></script>
 </body>
 </html>
