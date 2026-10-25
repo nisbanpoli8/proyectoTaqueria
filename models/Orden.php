@@ -149,6 +149,23 @@ class Orden
         ]);
     }
 
+    public function obtenerActivaPorMesa(int $idMesa): ?array
+    {
+        $sql = 'SELECT o.*
+                FROM ordenes o
+                WHERE o.id_mesa = :id_mesa
+                  AND o.estado IN (\'pendiente\', \'en_preparacion\', \'listo\', \'servido\')
+                ORDER BY o.creado_en DESC
+                LIMIT 1';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':id_mesa' => $idMesa]);
+
+        $orden = $stmt->fetch();
+
+        return $orden !== false ? $orden : null;
+    }
+
     public function obtenerDetalle(int $idOrden): array
     {
         $sql = 'SELECT d.cantidad, d.precio_unitario, d.subtotal, d.notas, p.nombre_producto
