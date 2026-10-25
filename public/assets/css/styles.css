@@ -255,15 +255,18 @@ body {
 }
 
 .status-libre {
-    background: #5cf69a;
+    background: #48ff91;
+    filter: drop-shadow(2px 2px 1px #000a00);
 }
 
 .status-ocupada {
     background: #f45a5a;
+    filter: drop-shadow(2px 2px 1px #000a00);
 }
 
 .status-cuenta {
     background: #eacb5a;
+    filter: drop-shadow(2px 2px 1px #000a00);
 }
 
 .mesa-numero {
