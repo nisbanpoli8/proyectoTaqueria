@@ -20,7 +20,7 @@ $vista = $vista ?? 'todas';
         <div class="mesas-header mb-4">
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
                 <div>
-                    <span class="brand-chip">Tacos Roy</span>
+                    <span class="brand-chip">Taquería Tacos Tacos</span>
                     <h1 class="mesas-title mb-0">Comanda de Mesas</h1>
                 </div>
                 <div class="d-flex align-items-center gap-3">
