@@ -21,35 +21,37 @@ body {
 }
 
 .login-card {
-    width: min(100%, 450px);
+    width: min(100%, 480px);
     background: rgba(255, 255, 255, 0.9);
     border: 2px solid var(--color-borde);
     border-radius: 28px;
-    box-shadow: 0 20px 45px rgba(67, 34, 17, 0.12);
+    box-shadow: 0 20px 48px rgba(67, 34, 17, 0.12);
     padding: 2.2rem 2rem;
+    filter: drop-shadow(2px 2px 1px #000a00);
+
 }
 
 .brand-badge {
-    width: 82px;
-    height: 82px;
-    line-height: 82px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-amarillo), #ddaf2b);
-    color: var(--color-marron-oscuro);
-    font-weight: 900;
-    font-size: 2rem;
-    border: 3px solid var(--color-marron-oscuro);
+    filter: drop-shadow(2px 2px 1px #000a00);
+    justify-self: center;
+    align-items: center;
+    width: 350px;
+    max-height: 300px;
+    line-height: 180%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .brand-title {
-    font-family: 'Lilita One', cursive;
+    font-family: 'Copperplate', Fantasy;
     color: var(--color-marron-oscuro);
     font-size: clamp(2rem, 4vw, 2.6rem);
     margin-bottom: 0;
 }
 
 .form-label {
-    font-weight: 600;
+    font-weight: 800;
     color: var(--color-marron-oscuro);
 }
 
