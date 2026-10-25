@@ -255,23 +255,24 @@ body {
 }
 
 .status-libre {
-    background: #e8f7ee;
+    background: #5cf69a;
 }
 
 .status-ocupada {
-    background: #fde8e8;
+    background: #f45a5a;
 }
 
 .status-cuenta {
-    background: #fff5d2;
+    background: #eacb5a;
 }
 
 .mesa-numero {
-    font-family: 'Lilita One', cursive;
-    font-size: 2rem;
+    font-family: 'Copperplate', Fantasy;
+    font-size: 1.25rem;
     color: var(--color-marron-oscuro);
     line-height: 1;
 }
+
 
 .mesa-capacidad,
 .mesa-estado,
@@ -299,7 +300,10 @@ body {
     width: 100%;
     border-radius: 12px;
     font-weight: 700;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .modal-content {
     border-radius: 18px;
@@ -312,9 +316,11 @@ body {
 }
 
 .modal-title {
-    font-family: 'Lilita One', cursive;
+    font-family: 'Copperplate', Fantasy;
     font-size: 1.8rem;
 }
+
+/*Interfaz Cmandas*/
 
 .comanda-body {
     background: linear-gradient(135deg, #f7ebd2 0%, #f1d5a9 100%);
