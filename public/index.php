@@ -76,12 +76,6 @@ if ($action === 'admin') {
     return;
 }
 
-if ($action === 'caja') {
-    $accessController->requireRole(['Cajero']);
-    require_once __DIR__ . '/../views/caja.php';
-    return;
-}
-
 if ($action === 'mesas') {
     $accessController->requireRole(['Mesero']);
     (new MesasController())->index();
@@ -124,6 +118,21 @@ if ($action === 'cocina_listos') {
     $accessController->requireRole(['Taquero', 'Mesero', 'Administrador']);
     require_once __DIR__ . '/../controllers/CocinaController.php';
     (new CocinaController())->listos();
+    return;
+}
+
+// --- Caja (Cajero / Administrador) ---
+if ($action === 'caja') {
+    $accessController->requireRole(['Cajero', 'Administrador']);
+    require_once __DIR__ . '/../controllers/CajaController.php';
+    (new CajaController())->index();
+    return;
+}
+
+if ($action === 'caja_procesar_pago') {
+    $accessController->requireRole(['Cajero', 'Administrador']);
+    require_once __DIR__ . '/../controllers/CajaController.php';
+    (new CajaController())->procesarPago();
     return;
 }
 
