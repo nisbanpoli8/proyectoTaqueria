@@ -12,10 +12,11 @@
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
         <div class="login-card">
             <div class="login-header text-center">
-                <div class="brand-badge mx-auto mb-3"><img src="public/assets/images/logoprueba.png" alt="Logo Taqueria Tacos Tacos"></div>
+                <div class="brand-badge mx-auto mb-3">
+                    <img src="assets/images/logoprueba.png" alt="Logo Taqueria Tacos Tacos">
+                </div>
                 <h1 class="brand-title">Taquería Tacos Tacos</h1>
             </div>
-
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger rounded-pill text-center mb-4" role="alert">
                     <?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?>
@@ -27,7 +28,7 @@
                     <?php echo htmlspecialchars($expired, ENT_QUOTES, 'UTF-8'); ?>
                 </div>
             <?php endif; ?>
-            
+
             <br><br>
             <form id="login-form" method="POST" action="index.php?action=login" novalidate>
                 <div class="mb-4">
