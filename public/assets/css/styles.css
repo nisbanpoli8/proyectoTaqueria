@@ -1,5 +1,6 @@
 :root {
     --color-marron-oscuro: #432211;
+    --color-blanco: #ffffff;
     --color-marron-medio: #7a4b2d;
     --color-arena: #f5ead8;
     --color-amarillo: #f4cf5b;
@@ -83,7 +84,7 @@ body {
 }
 
 .btn-primary {
-    background: var(--color-marron-oscuro);
+    background: var(--color-blanco);
     border-color: var(--color-marron-oscuro);
     min-height: 52px;
     font-size: 1rem;
@@ -220,6 +221,10 @@ body {
     padding: 0.7rem 1rem;
     font-weight: 600;
     transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     filter: drop-shadow(2px 2px 1px #000a00);
 }
 
@@ -255,7 +260,7 @@ body {
 }
 
 .status-libre {
-    background: #b1ff9d;
+    background: #b1ffb3;
     filter: drop-shadow(2px 2px 1px #000a00);
 }
 
