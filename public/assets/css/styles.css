@@ -251,7 +251,7 @@ body {
 .mesa-card {
     background: rgba(255, 255, 255, 0.94);
     border: 3px solid var(--color-marron-oscuro);
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 1rem;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     min-height: 220px;
