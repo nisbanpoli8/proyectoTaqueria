@@ -27,7 +27,8 @@
                     <?php echo htmlspecialchars($expired, ENT_QUOTES, 'UTF-8'); ?>
                 </div>
             <?php endif; ?>
-
+            
+            <br><br>
             <form id="login-form" method="POST" action="index.php?action=login" novalidate>
                 <div class="mb-4">
                     <label for="usuario" class="form-label">Usuario</label>
