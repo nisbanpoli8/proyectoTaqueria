@@ -55,7 +55,7 @@ $vista = $vista ?? 'todas';
                 ?>
                 <div class="col-sm-6 col-md-4 col-lg-3 mesa-card-wrapper" data-status="<?php echo strtolower($estado); ?>">
                     <div class="mesa-card status-<?php echo strtolower($estado); ?>">
-                        <div class="mesa-numero">MESA <?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?></div>
+                        <div class="mesa-numero"> <?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?></div>
                         <div class="mesa-capacidad">
                             <span class="mesa-icon">👥</span>
                             <?php echo (int) $mesa['capacidad']; ?> personas
@@ -98,7 +98,7 @@ $vista = $vista ?? 'todas';
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="mesaModalTitle"></h5>
+                    <h5 class="modal-title" id="mesaModalTitle">Mesa</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="mesaModalBody"></div>
