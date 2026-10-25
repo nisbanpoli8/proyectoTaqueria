@@ -34,21 +34,22 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0 auto 1rem;
-    max-width: 100%;
+    width: 100%;
+    max-width: 250px;
 }
 
 .brand-badge img {
     display: block;
     width: 100%;
-    max-width: 280px;
     height: auto;
-    filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+    object-fit: contain;
 }
 
 .brand-title {
     font-family: 'Copperplate', 'Lilita One', cursive, sans-serif;
     color: var(--color-marron-oscuro);
-    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    line-height: 1.2;
     margin-bottom: 0;
 }
 
