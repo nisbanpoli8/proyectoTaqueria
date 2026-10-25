@@ -86,6 +86,7 @@ body {
 .btn-primary {
     background: var(--color-blanco);
     border-color: var(--color-marron-oscuro);
+    color: var(--color-marron-oscuro);
     min-height: 52px;
     font-size: 1rem;
     letter-spacing: 0.06em;
