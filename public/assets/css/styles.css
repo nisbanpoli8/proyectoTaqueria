@@ -52,7 +52,7 @@ body {
 }
 
 .brand-title {
-    font-family: 'Lilita One', 'Copperplate', cursive, sans-serif;
+    font-family: 'Copperplate', Fantasy;
     color: var(--color-marron-oscuro);
     font-size: clamp(1.6rem, 3.5vw, 2.2rem);
     line-height: 1.2;
