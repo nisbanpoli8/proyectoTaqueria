@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             modalFooter.innerHTML = `
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a href="index.php?action=mesas_liberar&id=${id}" class="btn btn-success">Cobrar y Liberar</a>
+                <a href="index.php?action=caja&id_mesa=${id}" class="btn btn-success">Cobrar y Liberar</a>
             `;
 
             modal.show();
