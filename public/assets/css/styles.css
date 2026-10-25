@@ -250,23 +250,23 @@ body {
 
 .mesa-card {
     background: rgba(255, 255, 255, 0.94);
-    border: 3px solid var(--color-marron-oscuro);
+    border: 1px solid #000000;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 2rem;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     min-height: 220px;
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 0.8rem;
 }
 
 .status-libre {
-    background: #b1ffb3;
-    filter: drop-shadow(2px 2px 1px #000a00);
+    background: #ffebab;
+    filter: drop-shadow(2px 2px 1px #000000);
 }
 
 .status-ocupada {
-    background: #fe8282;
+    background: #fc9898;
     filter: drop-shadow(2px 2px 1px #000a00);
 }
 
@@ -311,12 +311,13 @@ body {
     font-weight: 700;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 
 .modal-content {
-    border-radius: 18px;
-    border: 2px solid var(--color-marron-oscuro);
+    border-radius: 12px;
+    border: 2px solid #000000;
 }
 
 .modal-header {
@@ -324,12 +325,21 @@ body {
     color: var(--color-marron-oscuro);
 }
 
+
+/*Cambio*/
 .modal-title {
     font-family: 'Copperplate', Fantasy;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
 }
 
-/*Interfaz Cmandas*/
+.modal-body {
+    background-color: var(--color-arena);
+    padding: 1rem;
+}
+
+#mesaModalBody {
+    color: var(--color-texto) !important;
+}
 
 .comanda-body {
     background: linear-gradient(135deg, #f7ebd2 0%, #f1d5a9 100%);
@@ -342,6 +352,8 @@ body {
     margin: 0 auto;
 }
 
+/*Interfaz Comandas*/
+
 .comanda-header {
     background: rgba(255, 255, 255, 0.72);
     border: 2px solid var(--color-borde);
@@ -349,6 +361,7 @@ body {
     padding: 1.25rem 1.5rem;
     box-shadow: 0 12px 30px rgba(67, 34, 17, 0.08);
 }
+
 
 .comanda-badge {
     display: inline-block;
