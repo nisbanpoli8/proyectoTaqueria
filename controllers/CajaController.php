@@ -119,5 +119,31 @@ class CajaController
         header('Location: index.php?action=caja_panel');
         exit;
     }
+
+        public function ticket(): void
+    {
+        $pdo = getDatabaseConnection();
+        
+        $stmt = $pdo->query("SELECT * FROM ordenes WHERE estado = 'pagado' ORDER BY id DESC LIMIT 1");
+        $orden = $stmt->fetch();
+
+        if (!$orden) {
+            echo "No hay tickets recientes.";
+            return;
+        }
+
+        $idOrden = $orden['id'];
+        $idMesa = $orden['id_mesa'];
+        $total = $orden['total'];
+
+        $ordenModel = new Orden();
+        $detalle = $ordenModel->obtenerDetalle($idOrden);
+
+        $stmtPago = $pdo->prepare("SELECT * FROM pagos WHERE id_orden = :id_orden LIMIT 1");
+        $stmtPago->execute([':id_orden' => $idOrden]);
+        $pago = $stmtPago->fetch();
+
+        require __DIR__ . '/../views/ticket.php';
+    }
 }
 ?>
