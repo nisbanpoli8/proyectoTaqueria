@@ -78,7 +78,7 @@ if ($action === 'admin') {
 }
 
 if ($action === 'mesas') {
-    $accessController->requireRole(['Mesero']);
+    $accessController->requireRole(['Mesero','Cajero']);
     (new MesasController())->index();
     return;
 }
