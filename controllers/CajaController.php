@@ -1,4 +1,5 @@
 <?php
+// controllers/CajaController.php
 
 declare(strict_types=1);
 
@@ -52,38 +53,54 @@ class CajaController
 
         $idOrden = (int) ($_POST['id_orden'] ?? 0);
         $idMesa = (int) ($_POST['id_mesa'] ?? 0);
-        $metodoPago = strtolower(trim((string) ($_POST['metodo_pago'] ?? '')));
+        $metodoPagoTexto = strtolower(trim((string) ($_POST['metodo_pago'] ?? '')));
         $montoRecibido = (float) ($_POST['monto_recibido'] ?? 0);
         $total = (float) ($_POST['total'] ?? 0);
         $metodosPermitidos = ['efectivo', 'tarjeta', 'transferencia'];
 
-        if ($idOrden <= 0 || $idMesa <= 0 || !in_array($metodoPago, $metodosPermitidos, true) || $total < 0) {
+        // ✅ CORREGIDO: Ahora valida $metodoPagoTexto
+        if ($idOrden <= 0 || $idMesa <= 0 || !in_array($metodoPagoTexto, $metodosPermitidos, true) || $total < 0) {
             $_SESSION['flash_error'] = 'No fue posible procesar el pago.';
             header('Location: index.php?action=caja&id_mesa=' . $idMesa);
             exit;
         }
 
-        if ($metodoPago === 'efectivo' && $montoRecibido < $total) {
+        // ✅ CORREGIDO: Ahora usa $metodoPagoTexto
+        if ($metodoPagoTexto === 'efectivo' && $montoRecibido < $total) {
             $_SESSION['flash_error'] = 'El monto recibido es menor al total.';
             header('Location: index.php?action=caja&id_mesa=' . $idMesa);
             exit;
         }
 
         $cambio = 0.0;
-        if ($metodoPago === 'efectivo') {
+        if ($metodoPagoTexto === 'efectivo') {
             $cambio = round(max($montoRecibido - $total, 0.0), 2);
         } else {
             $montoRecibido = $total;
         }
 
         $pdo = getDatabaseConnection();
-        $sqlPago = 'INSERT INTO pagos (id_orden, metodo_pago, monto_recibido, cambio)
-                    VALUES (:id_orden, :metodo_pago, :monto_recibido, :cambio)';
+        $sqlPago = 'INSERT INTO pagos (id_orden, id_metodo_pago, monto_recibido, cambio)
+                    VALUES (:id_orden, :id_metodo_pago, :monto_recibido, :cambio)';
+
+        $mapaMetodos = [
+            'efectivo' => 1,
+            'tarjeta' => 2,
+            'transferencia' => 3,
+        ];
+
+        if (!isset($mapaMetodos[$metodoPagoTexto])) {
+            $_SESSION['flash_error'] = 'Método de pago no válido.';
+            header('Location: index.php?action=caja&id_mesa=' . $idMesa);
+            exit;
+        }
+
+        $idMetodoPago = $mapaMetodos[$metodoPagoTexto];
 
         $stmtPago = $pdo->prepare($sqlPago);
         $stmtPago->execute([
             ':id_orden' => $idOrden,
-            ':metodo_pago' => $metodoPago,
+            ':id_metodo_pago' => $idMetodoPago,
             ':monto_recibido' => number_format($montoRecibido, 2, '.', ''),
             ':cambio' => number_format($cambio, 2, '.', ''),
         ]);
@@ -107,3 +124,4 @@ class CajaController
         exit;
     }
 }
+?>
