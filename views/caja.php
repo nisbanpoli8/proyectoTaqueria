@@ -154,25 +154,8 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
                                     </span>
                                     <i class="fa-solid fa-money-bill-wave text-green-600"></i>
                                 </label>
-
-                                <label class="flex cursor-pointer items-center justify-between rounded-2xl border border-taco-brown/20 bg-taco-yellow-warm p-3">
-                                    <span class="flex items-center gap-3">
-                                        <input type="radio" name="metodo_pago" value="tarjeta" class="h-4 w-4 text-taco-brown">
-                                        <span class="font-medium text-taco-brown">Tarjeta</span>
-                                    </span>
-                                    <i class="fa-regular fa-credit-card text-blue-600"></i>
-                                </label>
-
-                                <label class="flex cursor-pointer items-center justify-between rounded-2xl border border-taco-brown/20 bg-taco-yellow-warm p-3">
-                                    <span class="flex items-center gap-3">
-                                        <input type="radio" name="metodo_pago" value="transferencia" class="h-4 w-4 text-taco-brown">
-                                        <span class="font-medium text-taco-brown">Transferencia</span>
-                                    </span>
-                                    <i class="fa-solid fa-building-columns text-purple-600"></i>
-                                </label>
                             </div>
                         </div>
-
                         <div>
                             <label for="monto_recibido" class="mb-2 block text-sm font-semibold text-taco-brown">Monto recibido</label>
                             <input id="monto_recibido" name="monto_recibido" type="number" min="0" step="0.01" value="<?php echo number_format($total, 2, '.', ''); ?>" class="w-full rounded-2xl border-2 border-taco-brown/20 bg-taco-yellow-light px-4 py-3 text-base text-taco-brown outline-none transition focus:border-taco-brown" placeholder="0.00">
