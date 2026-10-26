@@ -41,8 +41,6 @@ class CajaController
         $id_mesa = $idMesa;
         $id_orden = $idOrden;
 
-        die('¡El controlador de caja SE ESTÁ EJECUTANDO!'); 
-
         require __DIR__ . '/../views/caja.php';
     }
 
