@@ -84,9 +84,9 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
             <div class="rounded-full border-2 border-taco-yellow bg-taco-yellow-light px-4 py-2 text-sm font-medium text-taco-brown">
                 Cuenta en revisión
             </div>
-            <a href="index.php?action=mesas" class="inline-flex items-center justify-center rounded-xl border-2 border-taco-brown bg-white px-4 py-2 text-sm font-semibold text-taco-brown transition hover:bg-taco-yellow-light">
+            <a href="index.php?action=caja_panel" class="inline-flex items-center justify-center rounded-xl border-2 border-taco-brown bg-white px-4 py-2 text-sm font-semibold text-taco-brown transition hover:bg-taco-yellow-light">
                 <i class="fa-solid fa-arrow-left mr-2"></i>
-                Volver a Mesas
+                Volver a Comandas por cobrar
             </a>
         </div>
 
