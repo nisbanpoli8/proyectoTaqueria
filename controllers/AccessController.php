@@ -41,7 +41,8 @@ class AccessController
                 header('Location: index.php?action=admin');
                 break;
             case 'Cajero':
-                header('Location: index.php?action=caja');
+                // ✅ CORREGIDO: Mandar a un panel de caja, no directo a cobrar
+                header('Location: index.php?action=caja_panel');
                 break;
             case 'Mesero':
                 header('Location: index.php?action=mesas');
