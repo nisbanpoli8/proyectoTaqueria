@@ -38,14 +38,18 @@ $mesasPendientes = $mesasPendientes ?? [];
     </head>
     <body class="min-h-screen p-6">
         <?php if (isset($_SESSION['flash_success'])): ?>
-            <div id="mensaje-exito" class="max-w-5xl mx-auto mb-6 bg-emerald-100 border-4 border-emerald-500 text-emerald-900 px-6 py-4 rounded-2xl shadow-lg font-bold text-center flex items-center justify-center gap-3">  
-                    <i class="fa-solid fa-circle-check text-2xl"></i>  
-                    <?php 
-                    echo htmlspecialchars($_SESSION['flash_success']); 
-                    unset($_SESSION['flash_success']); // Se borra para que no salga de nuevo al recargar
-                ?>
+            <div id="mensaje-exito" class="max-w-5xl mx-auto mb-6 bg-emerald-100 border-4 border-emerald-500 text-emerald-900 px-6 py-4 rounded-2xl shadow-lg font-bold text-center flex flex-col items-center gap-3">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-circle-check text-2xl"></i>
+                <span><?php echo htmlspecialchars($_SESSION['flash_success']); ?></span>
             </div>
-        <?php endif; ?>
+            <!-- Botón para ir al ticket -->
+            <a href="index.php?action=ticket" target="_blank" class="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-xl text-sm uppercase tracking-wider transition">
+                <i class="fa-solid fa-print"></i> Imprimir Ticket
+            </a>
+            <?php unset($_SESSION['flash_success']); ?>
+        </div>
+    <?php endif; ?>
 
     <div class="max-w-5xl mx-auto">
         <header class="mb-8 flex justify-between items-center bg-taco-yellow-warm p-4 rounded-3xl border-4 border-taco-brown shadow-lg">
