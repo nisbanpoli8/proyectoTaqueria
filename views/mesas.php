@@ -81,10 +81,9 @@ $vista = $vista ?? 'todas';
                                 <a href="index.php?action=comanda&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-primary w-100">Ver Comanda</a>
                                 <a href="index.php?action=mesas_solicitar_cuenta&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-warning mt-2 w-100">Solicitar Cuenta</a>
                             <?php else: ?>
-                                <button type="button" class="btn btn-success btn-cobrar" data-id="<?php echo (int) $mesa['id']; ?>" data-numero="<?php echo htmlspecialchars((string) $mesa['numero_mesa'], ENT_QUOTES, 'UTF-8'); ?>">
-                                    Cobrar Ticket
-                                </button>
-                                <a href="index.php?action=mesas_liberar&id=<?php echo (int) $mesa['id']; ?>" class="btn btn-outline-dark mt-2 w-100">Liberar Mesa</a>
+                                <a href="index.php?action=caja&id_mesa=<?php echo (int) $mesa['id']; ?>" class="btn btn-success w-100">
+                                <i class="fa-solid fa-cash-register"></i> Cobrar Ticket
+                                </a>
                             <?php endif; ?>
                         </div>
                     </div>
