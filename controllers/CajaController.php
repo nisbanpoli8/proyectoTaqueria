@@ -19,7 +19,7 @@ class CajaController
 
         require __DIR__ . '/../views/caja_lista.php';
     }
-    
+
     public function index(): void
     {
         $idMesa = (int) ($_GET['id_mesa'] ?? 0);
@@ -83,39 +83,23 @@ class CajaController
             exit;
         }
 
-        $cambio = 0.0;
-        if ($metodoPagoTexto === 'efectivo') {
-            $cambio = round(max($montoRecibido - $total, 0.0), 2);
-        } else {
-            $montoRecibido = $total;
-        }
-
+        // Calcular cambio
+        $cambio = round(max($montoRecibido - $total, 0.0), 2);
+        
         $pdo = getDatabaseConnection();
-        $sqlPago = 'INSERT INTO pagos (id_orden, id_metodo_pago, monto_recibido, cambio)
-                    VALUES (:id_orden, :id_metodo_pago, :monto_recibido, :cambio)';
 
-        $mapaMetodos = [
-            'efectivo' => 1,
-            'tarjeta' => 2,
-            'transferencia' => 3,
-        ];
-
-        if (!isset($mapaMetodos[$metodoPagoTexto])) {
-            $_SESSION['flash_error'] = 'Método de pago no válido.';
-            header('Location: index.php?action=caja&id_mesa=' . $idMesa);
-            exit;
-        }
-
-        $idMetodoPago = $mapaMetodos[$metodoPagoTexto];
-
+        $sqlPago = 'INSERT INTO pagos (id_orden, metodo_pago, monto_recibido, cambio)
+                    VALUES (:id_orden, :metodo_pago, :monto_recibido, :cambio)';
+        
         $stmtPago = $pdo->prepare($sqlPago);
         $stmtPago->execute([
             ':id_orden' => $idOrden,
-            ':id_metodo_pago' => $idMetodoPago,
+            ':metodo_pago' => 'efectivo',
             ':monto_recibido' => number_format($montoRecibido, 2, '.', ''),
             ':cambio' => number_format($cambio, 2, '.', ''),
         ]);
 
+         // Actualizar estado de la orden a 'pagado'
         $ordenModel = new Orden();
         if (!$ordenModel->actualizarEstado($idOrden, 'pagado')) {
             $_SESSION['flash_error'] = 'No fue posible cerrar la orden.';
@@ -123,6 +107,7 @@ class CajaController
             exit;
         }
 
+        // Liberar la mesa
         $mesaModel = new Mesa();
         if (!$mesaModel->actualizarEstado($idMesa, 'libre')) {
             $_SESSION['flash_error'] = 'No fue posible liberar la mesa.';
@@ -131,7 +116,7 @@ class CajaController
         }
 
         $_SESSION['flash_success'] = 'Pago procesado y mesa liberada';
-        header('Location: index.php?action=mesas');
+        header('Location: index.php?action=caja_panel');
         exit;
     }
 }
