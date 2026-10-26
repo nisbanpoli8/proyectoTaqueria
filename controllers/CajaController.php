@@ -9,6 +9,17 @@ require_once __DIR__ . '/../models/Mesa.php';
 
 class CajaController
 {
+
+    public function lista(): void
+    {
+        $pdo = getDatabaseConnection();
+        // Buscamos las mesas que están reservadas (pidieron cuenta)
+        $stmt = $pdo->query("SELECT id, numero_mesa, capacidad FROM mesas WHERE disponibilidad = 'reservada'");
+        $mesasPendientes = $stmt->fetchAll();
+
+        require __DIR__ . '/../views/caja_lista.php';
+    }
+    
     public function index(): void
     {
         $idMesa = (int) ($_GET['id_mesa'] ?? 0);
