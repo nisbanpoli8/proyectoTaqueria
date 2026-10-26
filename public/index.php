@@ -124,9 +124,10 @@ if ($action === 'cocina_listos') {
 
 // --- Panel de Caja (Lista de mesas para cobrar) ---
 if ($action === 'caja_panel') {
-    $accessController->requireRole(['Cajero', 'Administrador']);
+    $accessController->requireRole(['Cajero']);
     require_once __DIR__ . '/../controllers/CajaController.php';
     (new CajaController())->lista(); 
+     return;
 }
 
 // --- Caja (Cobro Real) ---
