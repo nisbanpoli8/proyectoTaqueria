@@ -10,6 +10,10 @@
     --color-borde: rgba(67, 34, 17, 0.18);
 }
 
+/* ==========================================
+   MODULO DE LOGIN
+   ========================================== */
+
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #f4e8d3 0%, #e9d7b5 100%);
@@ -103,6 +107,10 @@ body {
     font-size: 0.9rem;
 }
 
+/* ==========================================
+   MODULO DE DASHBOARD
+   ========================================== */
+
 .dashboard-body {
     background: linear-gradient(135deg, #382116 0%, #67442f 100%);
     color: #fffaf5;
@@ -160,7 +168,9 @@ body {
     border-color: #ffecb5;
 }
 
-/*Interfaz Mesas.php*/
+/* ==========================================
+   MODULO DE MESAS
+   ========================================== */
 
 .mesas-body {
     background-image: radial-gradient(circle, rgba(67, 34, 17, 0.05) 1px, transparent 1px);
@@ -341,6 +351,10 @@ body {
     color: var(--color-texto) !important;
 }
 
+/* ==========================================
+   MODULO DE COMANDAS
+   ========================================== */
+
 .comanda-body {
     background: linear-gradient(135deg, #f7ebd2 0%, #f1d5a9 100%);
     min-height: 100vh;
@@ -352,8 +366,6 @@ body {
     margin: 0 auto;
 }
 
-/*Interfaz Comandas*/
-
 .comanda-header {
     background: rgba(255, 255, 255, 0.72);
     border: 2px solid var(--color-borde);
@@ -361,7 +373,6 @@ body {
     padding: 1.25rem 1.5rem;
     box-shadow: 0 12px 30px rgba(67, 34, 17, 0.08);
 }
-
 
 .comanda-badge {
     display: inline-block;
@@ -525,6 +536,200 @@ body {
     .action-row {
         flex-direction: column;
     }
+}
+
+/* ==========================================
+   MODULO DE COCINA
+   ========================================== */
+
+body.cocina-body {
+    font-family: 'Copperplate', Fantasy;
+    background-color: #fff9f3;
+    background-image: radial-gradient(#78350F 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: #4A2E1D;
+    min-height: 100vh;
+}
+
+.font-brand {
+    font-family: 'Lilita One', cursive;
+}
+
+/* Header Superior */
+.cocina-header {
+    background-color: #FBBF24;
+    border-bottom: 4px solid #4A2E1D;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 1rem;
+}
+
+.cocina-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.cocina-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cocina-logo-icon {
+    background: #FFFBEB;
+    border: 2px solid #4A2E1D;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #9A3412;
+}
+
+.cocina-logo-text {
+    font-family: 'Lilita One', cursive;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.cocina-logo-sub {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Contenedor Principal */
+.cocina-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.cocina-section {
+    background-color: #FFFBEB;
+    border: 3px solid #4A2E1D;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cocina-section-title {
+    font-family: 'Lilita One', cursive;
+    font-size: 1.8rem;
+    color: #4A2E1D;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Tarjetas del Salón (Mesas) */
+.cocina-mesas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.cocina-mesa-card {
+    border: 2px solid;
+    border-radius: 0.5rem;
+    padding: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cocina-mesa-libre {
+    background-color: #DCFCE7;
+    border-color: #15803D;
+    color: #14532D;
+}
+
+.cocina-mesa-ocupada {
+    background-color: #FEE2E2;
+    border-color: #B91C1C;
+    color: #B91C1C;
+}
+
+.cocina-mesa-reservada {
+    background-color: #FEF3C7;
+    border-color: #F59E0B;
+    color: #78350F;
+}
+
+/* Tarjetas de Comandas */
+.cocina-orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.cocina-order-card {
+    background: white;
+    border: 2px solid #4A2E1D;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.cocina-order-header {
+    background-color: #FBBF24;
+    padding: 1rem;
+    border-bottom: 2px solid #4A2E1D;
+}
+
+.cocina-order-body {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.cocina-order-footer {
+    padding: 0.8rem 1rem;
+    border-top: 1px solid #e5e7eb;
+    font-size: 0.85rem;
+    color: #78350F;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Botones */
+.cocina-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 2px solid #4A2E1D;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: #3D2314;
+}
+
+.cocina-btn:hover {
+    background-color: #F59E0B;
+}
+
+.cocina-btn-outline {
+    background-color: #FFFBEB;
+}
+
+.cocina-btn-dark {
+    background-color: #4A2E1D;
+    color: #FBBF24;
+}
+
+.cocina-btn-dark:hover {
+    background-color: #3D2314;
 }
 
 /* ==========================================
