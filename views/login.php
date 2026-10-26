@@ -6,16 +6,16 @@
     <title>Login | Taquería Tacos Tacos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="icon" sizes="64x64" href="public/assets/images/logoprueba.png">
+    <link rel="icon" sizes="64x64" href="public/assets/images/logoTacosRoy.png">
 </head>
 <body class="login-body">
     <div class="container d-flex align-items-center justify-content-center min-vh-100">
         <div class="login-card">
             <div class="login-header text-center">
                 <div class="brand-badge mx-auto mb-3">
-                    <img src="assets/images/logoprueba.png" alt="Logo Taqueria Tacos Tacos">
+                    <img src="public/assets/images/logoTacosRoy.png" alt="Logo Taqueria Tacos Tacos">
                 </div>
-                <h1 class="brand-title">Taquería Tacos Tacos</h1>
+                <h1 class="brand-title">Taquería Tacos Roy</h1>
             </div>
             <?php if (!empty($error)): ?>
                 <div class="alert alert-danger rounded-pill text-center mb-4" role="alert">
