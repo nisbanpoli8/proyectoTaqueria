@@ -122,7 +122,14 @@ if ($action === 'cocina_listos') {
     return;
 }
 
-// --- Caja (Cajero / Administrador) ---
+// --- Panel de Caja (Bienvenida para el Cajero) ---
+if ($action === 'caja_panel') {
+    $accessController->requireRole(['Cajero', 'Administrador']);
+    require_once __DIR__ . '/../views/caja_panel.php'; // 
+    return;
+}
+
+// --- Caja (Cobro Real) ---
 if ($action === 'caja') {
     $accessController->requireRole(['Cajero', 'Administrador']);
     require_once __DIR__ . '/../controllers/CajaController.php';
