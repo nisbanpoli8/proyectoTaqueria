@@ -9,6 +9,7 @@ require_once __DIR__ . '/../controllers/AccessController.php';
 require_once __DIR__ . '/../controllers/UsuarioController.php';
 require_once __DIR__ . '/../controllers/MesasController.php';
 require_once __DIR__ . '/../controllers/ComandaController.php';
+require_once __DIR__ . '/../controllers/CajaController.php';
 
 const SESSION_TIMEOUT_SECONDS = 600;
 const SESSION_WARNING_SECONDS = 10;
