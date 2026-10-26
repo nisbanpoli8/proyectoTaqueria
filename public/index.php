@@ -145,6 +145,13 @@ if ($action === 'caja_procesar_pago') {
     return;
 }
 
+if ($action === 'ticket') {
+    $accessController->requireRole(['Cajero', 'Administrador']);
+    require_once __DIR__ . '/../controllers/CajaController.php';
+    (new CajaController())->ticket();
+    return;
+}
+
 if ($action === 'comanda') {
     $accessController->requireRole(['Mesero']);
     (new ComandaController())->index();
