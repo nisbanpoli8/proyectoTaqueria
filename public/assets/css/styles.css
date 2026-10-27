@@ -188,6 +188,12 @@ body {
     filter: drop-shadow(2px 2px 1px #000a00);
 }
 
+.mesas-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .brand-chip {
     display: inline-block;
     background: var(--color-marron-oscuro);
