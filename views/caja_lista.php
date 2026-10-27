@@ -9,6 +9,7 @@ $mesasPendientes = $mesasPendientes ?? [];
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="assets/images/logoTacosRoyTab.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comandas por Cobrar | Tacos Roy</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -53,8 +54,8 @@ $mesasPendientes = $mesasPendientes ?? [];
 
     <div class="max-w-5xl mx-auto">
         <header class="mb-8 flex justify-between items-center bg-taco-yellow-warm p-4 rounded-3xl border-4 border-taco-brown shadow-lg">
-            <div class="flex items-center gap-4">
-                <div class="text-4xl">🌮</div>
+                    <div class="flex items-center gap-4">
+                    <img src="assets/images/logoTacosRoyH.png" alt="Logo Tacos Roy" class="cocina-logo-img">
                 <div>
                     <h1 class="font-brand text-3xl text-taco-brown">Comandas por Cobrar</h1>
                     <p class="text-sm font-semibold text-taco-brown/80">Bienvenido, <?php echo htmlspecialchars($nombreCompleto); ?></p>
