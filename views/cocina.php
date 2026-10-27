@@ -18,11 +18,10 @@ function escaparCocina(string $valor): string
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+        <link rel="icon" sizes="64x64" href="public/assets/images/logoTacosRoyTab.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cocina - Comandas | Tacos Roy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Llamamos a nuestros estilos -->
     <link rel="stylesheet" href="assets/css/styles.css?v=7">
 </head>
@@ -34,7 +33,7 @@ function escaparCocina(string $valor): string
     <header class="cocina-header">
         <div class="cocina-header-content">
             <div class="cocina-logo">
-                <div class="cocina-logo-icon"><i class="fa-solid fa-fire"></i></div>
+                                <img src="assets/images/logoTacosRoyH.png" alt="Logo Tacos Roy" class="cocina-logo-img">
                 <div>
                     <div class="cocina-logo-text">TACOS ROY</div>
                     <div class="cocina-logo-sub">Cocina - Comandas Pendientes</div>
@@ -42,13 +41,13 @@ function escaparCocina(string $valor): string
             </div>
              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
                 <!-- 1. Contador de órdenes -->
-                <span class="rounded-full border-2 border-[#4A2E1D] bg-[#FFFBEB] px-4 py-2 text-sm font-bold">
+                <span class="rounded-full border-2 border-[#4A2E1D] bg-[#FFFBEB] px-4 py-2 text-sm">
                     <i class="fa-solid fa-receipt mr-1" aria-hidden="true"></i>
                     <span><?php echo count($ordenes); ?></span> órdenes
                 </span>
                 
                 <!-- 2. Hora de actualización (El JS la llena) -->
-                <span class="hidden text-xs font-semibold sm:inline" id="last-updated" aria-live="polite"></span>
+                <span class="hidden text-xs sm:inline" id="last-updated" aria-live="polite"></span>
                 
                 <!-- 3. Enlace a Órdenes Listas -->
                 <a href="index.php?action=cocina_listos" class="cocina-btn cocina-btn-dark">
@@ -66,12 +65,12 @@ function escaparCocina(string $valor): string
     <main class="cocina-main">
         <!-- Avisos -->
         <?php if ($success !== ''): ?>
-            <div class="p-4 mb-4 rounded-lg bg-green-100 text-green-900 border-2 border-green-700 font-bold">
+            <div class="p-4 mb-4 rounded-lg bg-green-100 text-green-900 border-2 border-green-700">
                 <i class="fa-solid fa-circle-check mr-2"></i><?php echo escaparCocina($success); ?>
             </div>
         <?php endif; ?>
         <?php if ($error !== ''): ?>
-            <div class="p-4 mb-4 rounded-lg bg-red-100 text-red-900 border-2 border-red-700 font-bold">
+            <div class="p-4 mb-4 rounded-lg bg-red-100 text-red-900 border-2 border-red-700">
                 <i class="fa-solid fa-circle-exclamation mr-2"></i><?php echo escaparCocina($error); ?>
             </div>
         <?php endif; ?>
@@ -92,8 +91,8 @@ function escaparCocina(string $valor): string
                     ?>
                     <div class="cocina-mesa-card cocina-mesa-<?php echo $disponibilidad; ?>">
                         <div>
-                            <div class="font-bold text-lg">MESA <?php echo escaparCocina((string) $mesa['numero_mesa']); ?></div>
-                            <div class="text-xs font-semibold"><?php echo $textoMesa; ?> · <?php echo (int) $mesa['capacidad']; ?> pax</div>
+                            <div class="text-lg"><?php echo escaparCocina((string) $mesa['numero_mesa']); ?></div>
+                            <div class="text-xs"><?php echo $textoMesa; ?> · <?php echo (int) $mesa['capacidad']; ?> pax</div>
                         </div>
                         <i class="fa-solid <?php echo $iconoMesa; ?> text-lg"></i>
                     </div>
@@ -105,7 +104,7 @@ function escaparCocina(string $valor): string
         <section class="cocina-section">
             <h2 class="cocina-section-title">
                 <i class="fa-solid fa-fire-burner text-[#9A3412]"></i> Comandas Activas
-                <span class="text-sm font-semibold text-[#78350F] ml-auto">Mesero: <?php echo escaparCocina($nombreCompleto); ?></span>
+                <span class="text-sm text-[#78350F] ml-auto">Mesero: <?php echo escaparCocina($nombreCompleto); ?></span>
             </h2>
 
             <?php if ($ordenes === []): ?>
@@ -125,25 +124,25 @@ function escaparCocina(string $valor): string
                         <article class="cocina-order-card">
                             <div class="cocina-order-header flex justify-between items-start">
                                 <div>
-                                    <h3 class="font-brand text-2xl">MESA <?php echo escaparCocina((string) $orden['numero_mesa']); ?></h3>
-                                    <p class="text-sm font-semibold"><i class="fa-solid fa-user mr-1"></i> <?php echo escaparCocina(trim($orden['mesero_nombre'] . ' ' . $orden['mesero_apellido'])); ?></p>
+                                    <h3 class="font-brand text-2xl"><?php echo escaparCocina((string) $orden['numero_mesa']); ?></h3>
+                                    <p class="text-sm"><i class="fa-solid fa-user mr-1"></i> <?php echo escaparCocina(trim($orden['mesero_nombre'] . ' ' . $orden['mesero_apellido'])); ?></p>
                                 </div>
-                                <span class="px-2 py-1 rounded text-xs font-bold <?php echo $preparando ? 'bg-yellow-200 text-yellow-900' : 'bg-red-200 text-red-900'; ?>">
+                                <span class="px-2 py-1 rounded text-xs<?php echo $preparando ? 'bg-yellow-200 text-yellow-900' : 'bg-red-200 text-red-900'; ?>">
                                     <?php echo $preparando ? 'En preparación' : 'Pendiente'; ?>
                                 </span>
                             </div>
 
                             <div class="cocina-order-body">
-                                <div class="flex justify-between border-b pb-2 mb-2 font-bold text-sm">
+                                <div class="flex justify-between border-b pb-2 mb-2 text-sm">
                                     <span>Productos</span>
                                     <span><?php echo $cantidadProductos; ?> items</span>
                                 </div>
                                 <ul class="space-y-2">
                                     <?php foreach ($orden['detalle'] as $producto): ?>
                                         <li class="flex gap-2 text-sm border-b border-dashed pb-1 last:border-0">
-                                            <span class="font-bold bg-[#4A2E1D] text-[#FBBF24] px-2 rounded"><?php echo (int) $producto['cantidad']; ?>x</span>
+                                            <span class="bg-[#4A2E1D] text-[#FBBF24] px-2 rounded"><?php echo (int) $producto['cantidad']; ?>x</span>
                                             <div>
-                                                <span class="font-semibold"><?php echo escaparCocina((string) $producto['nombre_producto']); ?></span>
+                                                <span class=><?php echo escaparCocina((string) $producto['nombre_producto']); ?></span>
                                                 <?php if (trim((string) ($producto['notas'] ?? '')) !== ''): ?>
                                                     <p class="text-xs italic text-red-600"><i class="fa-solid fa-note-sticky"></i> <?php echo escaparCocina((string) $producto['notas']); ?></p>
                                                 <?php endif; ?>
