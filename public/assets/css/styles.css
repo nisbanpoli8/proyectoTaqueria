@@ -726,6 +726,17 @@ body.cocina-body {
 }
 
 /* ==========================================
+   MODULO DE CAJA
+   ========================================== */
+
+.caja_lista-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ==========================================
    ESTILOS DEL PANEL DE ADMINISTRACIÓN
    ========================================== */
 
