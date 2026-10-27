@@ -18,7 +18,7 @@ function escaparCocina(string $valor): string
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-        <link rel="icon" sizes="64x64" href="public/assets/images/logoTacosRoyTab.png">
+    <link rel="icon" type="image/png" href="assets/images/logoTacosRoyTab.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cocina - Comandas | Tacos Roy</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,7 +33,7 @@ function escaparCocina(string $valor): string
     <header class="cocina-header">
         <div class="cocina-header-content">
             <div class="cocina-logo">
-                                <img src="assets/images/logoTacosRoyH.png" alt="Logo Tacos Roy" class="cocina-logo-img">
+                    <img src="assets/images/logoTacosRoyH.png" alt="Logo Tacos Roy" class="cocina-logo-img">
                 <div>
                     <div class="cocina-logo-text">TACOS ROY</div>
                     <div class="cocina-logo-sub">Cocina - Comandas Pendientes</div>
