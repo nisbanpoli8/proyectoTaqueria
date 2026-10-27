@@ -7,7 +7,7 @@ require_once __DIR__ . '/AccessController.php';
 
 class AuthController
 {
-    private const SESSION_TIMEOUT = 600;
+    private const SESSION_TIMEOUT = 900;
     private const SESSION_WARNING = 10;
 
     public static function getSessionTimeout(): int
