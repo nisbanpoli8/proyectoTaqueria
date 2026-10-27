@@ -7,10 +7,9 @@ require_once __DIR__ . '/../models/Mesa.php';
 
 class MesasController
 {
-    // ✅ CORREGIDO: constantes en minúsculas
     private const ESTADO_LIBRE = 'libre';
     private const ESTADO_OCUPADA = 'ocupada';
-    private const ESTADO_CUENTA = 'reservada'; // ⚠️ Tu BD usa 'reservada' en lugar de 'cuenta'
+    private const ESTADO_CUENTA = 'reservada'; 
 
     public function index(): void
     {
