@@ -120,6 +120,7 @@ function escaparCocina(string $valor): string
                         $preparando = $orden['estado'] === 'en_preparacion';
                         $cantidadProductos = array_sum(array_map(fn($p) => (int) $p['cantidad'], $orden['detalle']));
                         $creadoEn = strtotime((string) $orden['creado_en']);
+                        $notasUnicas = []; 
                         ?>
                         <article class="cocina-order-card">
                             <div class="cocina-order-header flex justify-between items-start">
@@ -139,19 +140,31 @@ function escaparCocina(string $valor): string
                                 </div>
                                 <ul class="space-y-2">
                                     <?php foreach ($orden['detalle'] as $producto): ?>
+                                        <?php 
+                                        $nota = trim((string) ($producto['notas'] ?? ''));
+                                        if ($nota !== '') {
+                                            $notasUnicas[] = $nota;
+                                        }
+                                        ?>
                                         <li class="flex gap-2 text-sm border-b border-dashed pb-1 last:border-0">
                                             <span class="bg-[#4A2E1D] text-[#FBBF24] px-2 rounded"><?php echo (int) $producto['cantidad']; ?>x</span>
                                             <div>
-                                                <span class=><?php echo escaparCocina((string) $producto['nombre_producto']); ?></span>
-                                                <?php if (trim((string) ($producto['notas'] ?? '')) !== ''): ?>
-                                                    <p class="text-xs italic text-red-600"><i class="fa-solid fa-note-sticky"></i> <?php echo escaparCocina((string) $producto['notas']); ?></p>
-                                                <?php endif; ?>
+                                                <span><?php echo escaparCocina((string) $producto['nombre_producto']); ?></span>
                                             </div>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
+                                <?php if (!empty($notasUnicas)): ?>
+                                    <div class="mt-3 p-2 bg-red-50 border border-red-200 rounded-lg">
+                                        <p class="text-xs font-bold text-red-800 uppercase mb-1">
+                                            <i class="fa-solid fa-triangle-exclamation mr-1"></i> Notas de la comanda: 
+                                        </p>
+                                        <?php foreach (array_unique($notasUnicas) as $nota): ?>
+                                            <p class="text-sm italic text-red-700">• <?php echo escaparCocina($nota); ?></p>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
-
                             <div class="cocina-order-footer">
                                 <span><i class="fa-regular fa-clock"></i> <?php echo $creadoEn ? date('H:i', $creadoEn) : '--:--'; ?></span>
                                 <span>Orden #<?php echo (int) $orden['id']; ?></span>
