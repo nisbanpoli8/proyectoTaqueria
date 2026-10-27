@@ -26,7 +26,7 @@ function escaparCocina(string $valor): string
     <link rel="stylesheet" href="assets/css/styles.css?v=7">
 </head>
 <body class="cocina-body">
-    <div id="aviso-actualizacion" class="hidden fixed bottom-5 right-5 bg-[#4A2E1D] text-[#FBBF24] px-6 py-3 rounded-xl shadow-2xl z-50 font-bold border-2 border-[#FBBF24]">
+    <div id="aviso-actualizacion" class="hidden fixed bottom-5 right-5 bg-[#4A2E1D] text-[#FBBF24] px-6 py-3 rounded-xl shadow-2xl z-50 border-2 border-[#FBBF24]">
         Actualizando...
     </div>
     <!-- Header -->
