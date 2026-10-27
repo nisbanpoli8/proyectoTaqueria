@@ -17,6 +17,7 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+        <link rel="icon" type="image/png" href="assets/images/logoTacosRoyTab.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Caja | Taquería Tacos Roy</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -61,8 +62,10 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
         <header class="mb-8 rounded-3xl border-4 border-taco-brown bg-taco-yellow-warm p-4 shadow-craft">
             <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div class="flex items-center gap-4">
-                    <div class="flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-taco-brown bg-taco-yellow text-2xl shadow-md">🌮</div>
-                    <div>
+                        <div class="caja-logo">
+                            <img src="assets/images/logoTacosRoyH.png" alt="Logo Tacos Roy" class="cocina-logo-img">
+                            </div>
+                        <div>
                         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-taco-brown-light">Taquería Tacos Roy</p>
                         <h1 class="font-brand text-3xl text-taco-brown">Panel de Caja</h1>
                     </div>
