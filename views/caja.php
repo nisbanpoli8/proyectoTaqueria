@@ -17,7 +17,7 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-        <link rel="icon" type="image/png" href="assets/images/logoTacosRoyTab.png">
+    <link rel="icon" type="image/png" href="assets/images/logoTacosRoyTab.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Caja | Taquería Tacos Roy</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -58,14 +58,28 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
     </style>
 </head>
 <body class="min-h-screen py-8 text-taco-brown">
+    
+    <!-- ✅ AVISO DE ERROR (Monto insuficiente o mayor a 1000) -->
+    <?php if (isset($_SESSION['flash_error'])): ?>
+        <div class="max-w-7xl mx-auto px-4 mb-4">
+            <div class="bg-red-100 border-4 border-red-500 text-red-900 px-4 py-3 rounded-xl font-bold text-center">
+                <i class="fa-solid fa-circle-exclamation mr-2"></i>
+                <?php 
+                    echo htmlspecialchars($_SESSION['flash_error']); 
+                    unset($_SESSION['flash_error']); 
+                ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="mx-auto max-w-7xl px-4">
         <header class="mb-8 rounded-3xl border-4 border-taco-brown bg-taco-yellow-warm p-4 shadow-craft">
             <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div class="flex items-center gap-4">
-                        <div class="caja-logo">
-                            <img src="assets/images/logoTacosRoyH.png" alt="Logo Tacos Roy" class="cocina-logo-img">
-                            </div>
-                        <div>
+                    <div class="caja-logo">
+                        <img src="assets/images/logoTacosRoyH.png" alt="Logo Tacos Roy" class="cocina-logo-img">
+                    </div>
+                    <div>
                         <p class="text-xs font-semibold uppercase tracking-[0.2em] text-taco-brown-light">Taquería Tacos Roy</p>
                         <h1 class="font-brand text-3xl text-taco-brown">Panel de Caja</h1>
                     </div>
@@ -94,6 +108,7 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
         </div>
 
         <div class="grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+            <!-- Desglose de la Comanda -->
             <section class="rounded-3xl border-4 border-taco-brown bg-taco-yellow-warm p-5 shadow-craft">
                 <div class="mb-5 flex items-center justify-between">
                     <h2 class="font-brand text-2xl text-taco-brown">Desglose de la comanda</h2>
@@ -135,6 +150,7 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
                 <?php endif; ?>
             </section>
 
+            <!-- Panel de Pago -->
             <aside class="rounded-3xl border-4 border-taco-brown bg-white p-5 shadow-craft">
                 <div class="mb-5">
                     <h2 class="font-brand text-2xl text-taco-brown">Pago</h2>
@@ -159,9 +175,12 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
                                 </label>
                             </div>
                         </div>
+                        
                         <div>
                             <label for="monto_recibido" class="mb-2 block text-sm font-semibold text-taco-brown">Monto recibido</label>
-                            <input id="monto_recibido" name="monto_recibido" type="number" min="0" step="0.01" value="<?php echo number_format($total, 2, '.', ''); ?>" class="w-full rounded-2xl border-2 border-taco-brown/20 bg-taco-yellow-light px-4 py-3 text-base text-taco-brown outline-none transition focus:border-taco-brown" placeholder="0.00">
+                            <!-- ✅ Se agregó el max="1000" -->
+                            <input id="monto_recibido" name="monto_recibido" type="number" min="0" max="1000" step="0.01" value="<?php echo number_format($total, 2, '.', ''); ?>" class="w-full rounded-2xl border-2 border-taco-brown/20 bg-taco-yellow-light px-4 py-3 text-base text-taco-brown outline-none transition focus:border-taco-brown" placeholder="0.00">
+                            <p class="text-xs text-gray-500 mt-1">El monto máximo permitido es de $1,000.00</p>
                         </div>
 
                         <div class="rounded-2xl border-2 border-taco-brown bg-taco-yellow-light p-4">
@@ -169,7 +188,7 @@ $hayOrdenActiva = $orden !== null && $idOrden > 0;
                             <p id="cambio-valor" class="mt-2 text-3xl font-brand text-taco-brown">$<?php echo number_format(0, 2, '.', ','); ?></p>
                         </div>
 
-                        <button type="submit" class="inline-flex w-full items-center justify-center rounded-xl border-2 border-taco-brown bg-taco-yellow px-4 py-3 text-base font-bold uppercase tracking-wide text-taco-brown transition hover:bg-taco-yellow-dark">
+                        <button type="submit" class="inline-flex w-full items-center justify-center rounded-xl border-2 border-taco-brown bg-taco-yellow px-4 py-3 text-base font-bold uppercase tracking-wide text-taco-brown transition hover:bg-taco-yellow-dark disabled:opacity-50 disabled:cursor-not-allowed">
                             <i class="fa-solid fa-cash-register mr-2"></i>
                             Procesar Pago
                         </button>
