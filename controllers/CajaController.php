@@ -69,6 +69,20 @@ class CajaController
         $total = (float) ($_POST['total'] ?? 0);
         $metodosPermitidos = ['efectivo', 'tarjeta', 'transferencia'];
 
+        //VALIDACIÓN: El monto no puede ser mayor a 1000
+        if ($montoRecibido > 1000) {
+            $_SESSION['flash_error'] = 'El monto recibido no puede ser mayor a $1,000.00.';
+            header('Location: index.php?action=caja&id_mesa=' . $idMesa);
+            exit;
+        }
+
+        // ✅ VALIDACIÓN: Monto insuficiente
+        if ($montoRecibido < $total) {
+            $_SESSION['flash_error'] = 'El monto recibido es menor al total. No hay cambio suficiente.';
+            header('Location: index.php?action=caja&id_mesa=' . $idMesa);
+            exit;
+        }
+
         // ✅ CORREGIDO: Ahora valida $metodoPagoTexto
         if ($idOrden <= 0 || $idMesa <= 0 || !in_array($metodoPagoTexto, $metodosPermitidos, true) || $total < 0) {
             $_SESSION['flash_error'] = 'No fue posible procesar el pago.';
