@@ -206,4 +206,12 @@ if ($action === 'usuarios_desactivar') {
     return;
 }
 
+// --- Productos (Administrador) ---
+if ($action === 'productos') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/ProductoController.php';
+    (new ProductoController())->index();
+    return;
+}
+
 $accessController->redirectByRole();
