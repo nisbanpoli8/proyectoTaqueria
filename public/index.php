@@ -237,6 +237,18 @@ if ($action === 'productos_actualizar') {
     return;
 }
 
+if ($action === 'productos_nuevo') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/ProductoController.php';
+    (new ProductoController())->nuevo();
+    return;
+}
+if ($action === 'productos_guardar') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/ProductoController.php';
+    (new ProductoController())->guardar();
+    return;
+}
 
 if ($action === 'inventario') {
     $accessController->requireRole(['Administrador']);
@@ -256,6 +268,19 @@ if ($action === 'inventario_actualizar') {
     $accessController->requireRole(['Administrador']);
     require_once __DIR__ . '/../controllers/InventarioController.php';
     (new InventarioController())->actualizar();
+    return;
+}
+
+if ($action === 'inventario_nuevo') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/InventarioController.php';
+    (new InventarioController())->nuevo();
+    return;
+}
+if ($action === 'inventario_guardar') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/InventarioController.php';
+    (new InventarioController())->guardar();
     return;
 }
 
