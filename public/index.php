@@ -73,6 +73,8 @@ if ($action === 'home') {
 
 if ($action === 'admin') {
     $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/InventarioController.php';
+    $alertasInsumos = (new InventarioController())->obtenerAlertas();
     require_once __DIR__ . '/../views/admin_panel.php';
     return;
 }
@@ -211,6 +213,78 @@ if ($action === 'productos') {
     $accessController->requireRole(['Administrador']);
     require_once __DIR__ . '/../controllers/ProductoController.php';
     (new ProductoController())->index();
+    return;    
+}
+
+
+if ($action === 'productos_editar') {
+    $accessController->requireRole(['Administrador']); // <-- Agregamos seguridad
+    require_once __DIR__ . '/../controllers/ProductoController.php';
+    
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+    if ($id > 0) {
+        (new ProductoController())->editar($id);
+    } else {
+        header('Location: index.php?action=productos');
+    }
+    return;
+}
+
+if ($action === 'productos_actualizar') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/ProductoController.php';
+    (new ProductoController())->actualizar();
+    return;
+}
+
+
+if ($action === 'inventario') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/InventarioController.php';
+    (new InventarioController())->index();
+    return;
+}
+
+if ($action === 'inventario_editar') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/InventarioController.php';
+    (new InventarioController())->editar((int) ($_GET['id'] ?? 0));
+    return;
+}
+
+if ($action === 'inventario_actualizar') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/InventarioController.php';
+    (new InventarioController())->actualizar();
+    return;
+}
+
+if ($action === 'inventario_alertas') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/InventarioController.php';
+    $alertasInsumos = (new InventarioController())->obtenerAlertas();
+    require_once __DIR__ . '/../views/admin_panel.php';
+    return;
+}
+
+if ($action === 'auditoria') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/AuditoriaController.php';
+    (new AuditoriaController())->index();
+    return;
+}
+
+if ($action === 'reportes') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/ReportesController.php';
+    (new ReportesController())->ventas();
+    return;
+}
+
+if ($action === 'reportes_pdf') {
+    $accessController->requireRole(['Administrador']);
+    require_once __DIR__ . '/../controllers/ReportesController.php';
+    (new ReportesController())->exportarPdf();
     return;
 }
 
