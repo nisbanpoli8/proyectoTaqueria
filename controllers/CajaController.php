@@ -108,7 +108,7 @@ class CajaController
         $stmtPago = $pdo->prepare($sqlPago);
         $stmtPago->execute([
             ':id_orden' => $idOrden,
-            ':metodo_pago' => 'efectivo',
+            ':metodo_pago' => $metodoPagoTexto,
             ':monto_recibido' => number_format($montoRecibido, 2, '.', ''),
             ':cambio' => number_format($cambio, 2, '.', ''),
         ]);
