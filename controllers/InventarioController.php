@@ -24,6 +24,74 @@ class InventarioController
         require __DIR__ . '/../views/inventario/lista.php';
     }
 
+        // 1. Mostrar el formulario de nuevo insumo
+    public function nuevo(): void
+    {
+        require __DIR__ . '/../views/inventario/nuevo.php';
+    }
+
+    // 2. Guardar el insumo en la BD
+    public function guardar(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = trim($_POST['nombre'] ?? '');
+            $unidad = trim($_POST['unidad_medida'] ?? '');
+            $stockInicial = (float)($_POST['stock_inicial'] ?? 0);
+            $stockMinimo = (float)($_POST['stock_minimo'] ?? 0);
+
+            // Validación (Criterio de aceptación HU-06)
+            if (empty($nombre) || empty($unidad) || $stockInicial < 0 || $stockMinimo < 0) {
+                $_SESSION['flash_error'] = 'Todos los campos obligatorios deben estar llenos.';
+                header('Location: index.php?action=inventario_nuevo');
+                exit;
+            }
+
+            try {
+                $this->pdo->beginTransaction();
+
+                // Insertamos el insumo
+                $sql = "INSERT INTO insumos (nombre_insumo, unidad_medida, stock_actual, stock_minimo) 
+                        VALUES (:nombre, :unidad, :stock, :minimo)";
+                $stmt = $this->pdo->prepare($sql);
+                $stmt->execute([
+                    ':nombre' => $nombre,
+                    ':unidad' => $unidad,
+                    ':stock' => $stockInicial,
+                    ':minimo' => $stockMinimo
+                ]);
+
+                $idInsumo = (int)$this->pdo->lastInsertId();
+                $idUsuario = (int)($_SESSION['usuario_id'] ?? 1); // Fallback al admin
+
+                // REGLA DE NEGOCIO: Si el stock inicial es mayor a 0, registramos el movimiento de entrada inicial
+                if ($stockInicial > 0) {
+                    $sqlMov = "INSERT INTO movimientos (id_usuario, id_insumo, tipo_movimiento, cantidad, stock_resultante, motivo, fecha) 
+                               VALUES (:id_usuario, :id_insumo, 'entrada', :cantidad, :stock_resultante, 'Ajuste', NOW())";
+                    $stmtMov = $this->pdo->prepare($sqlMov);
+                    $stmtMov->execute([
+                        ':id_usuario' => $idUsuario,
+                        ':id_insumo' => $idInsumo,
+                        ':cantidad' => $stockInicial,
+                        ':stock_resultante' => $stockInicial
+                    ]);
+                }
+
+                $this->pdo->commit();
+                $_SESSION['flash_success'] = 'Insumo registrado correctamente.';
+                header('Location: index.php?action=inventario');
+                exit;
+
+            } catch (Throwable $e) {
+                $this->pdo->rollBack();
+                error_log($e->__toString());
+                $_SESSION['flash_error'] = 'Error al registrar el insumo. Inténtalo de nuevo.';
+                header('Location: index.php?action=inventario_nuevo');
+                exit;
+            }
+        }
+    }
+
+
     public function editar(int $id): void
     {
         $insumo = $id > 0 ? $this->insumoModel->obtenerPorId($id) : null;
