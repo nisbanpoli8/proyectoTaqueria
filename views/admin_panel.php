@@ -73,6 +73,10 @@
         <div class="px-10 pb-10">
             <h1 class="text-4xl font-bold text-center mb-10 font-brand">Acciones principales</h1>
 
+            <section id="alertas" class="max-w-5xl mx-auto mb-8">
+                <?php include __DIR__ . '/inventario/alertas.php'; ?>
+            </section>
+
             <!-- Grid de Tarjetas -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
@@ -104,7 +108,7 @@
                     <h2 class="font-bold text-sm text-black uppercase text-center mb-2">Evaluar almacén</h2>
                     <div class="flex items-center justify-between mt-auto">
                         <i class="fa-solid fa-file-magnifying-glass text-6xl text-black"></i>
-                        <a href="index.php?action=inventario_alertas" class="bg-white border-2 border-black px-4 py-1 rounded-full font-bold text-sm text-black hover:bg-gray-100 transition">
+                        <a href="index.php?action=inventario_alertas#alertas" class="bg-white border-2 border-black px-4 py-1 rounded-full font-bold text-sm text-black hover:bg-gray-100 transition">
                             EVALUAR
                         </a>
                     </div>
@@ -115,7 +119,7 @@
                     <h2 class="font-bold text-sm text-black uppercase text-center mb-2">Generar corte de caja</h2>
                     <div class="flex items-center justify-between mt-auto">
                         <i class="fa-solid fa-cash-register text-6xl text-black"></i>
-                        <a href="index.php?action=reportes_caja" class="bg-white border-2 border-black px-4 py-1 rounded-full font-bold text-sm text-black hover:bg-gray-100 transition">
+                        <a href="index.php?action=reportes" class="bg-white border-2 border-black px-4 py-1 rounded-full font-bold text-sm text-black hover:bg-gray-100 transition">
                             GENERAR
                         </a>
                     </div>
