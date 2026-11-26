@@ -277,6 +277,7 @@ if ($action === 'inventario_nuevo') {
     (new InventarioController())->nuevo();
     return;
 }
+
 if ($action === 'inventario_guardar') {
     $accessController->requireRole(['Administrador']);
     require_once __DIR__ . '/../controllers/InventarioController.php';
