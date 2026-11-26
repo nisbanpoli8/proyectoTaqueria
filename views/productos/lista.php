@@ -70,10 +70,16 @@ $productos = $productos ?? [];
                 <input type="text" id="buscador" placeholder="Buscar producto" class="bg-transparent text-lg text-gray-700 placeholder-gray-400 outline-none w-full">
             </div>
             
-            <!-- Filtro (Visual) -->
+            <!-- Filtro Funcional -->
             <div class="w-1/3 p-3 flex items-center justify-center gap-2 border-r-2 border-gray-200 cursor-pointer hover:bg-gray-50">
-                <span class="text-xl font-bold text-black">Categoría</span>
-                <i class="fa-solid fa-chevron-down text-black"></i>
+                <select onchange="window.location.href='index.php?action=productos&categoria=' + this.value" class="bg-transparent text-lg font-bold text-black outline-none w-full text-center cursor-pointer">
+                    <option value="0">Todas las Categorías</option>
+                    <?php foreach ($categorias as $cat): ?>
+                        <option value="<?php echo $cat['id']; ?>" <?php echo (isset($_GET['categoria']) && $_GET['categoria'] == $cat['id']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($cat['nombre_categoria']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <!-- Botón Nuevo Producto -->
